@@ -20,4 +20,4 @@ int main(){
     } while (steps < 0);
     printf("He has %d methods to climb.",f(steps));
 }
-
+/*落后的版本，算到50就完全卡死了，可能因为多次递归调用（反向斐波那契）*/

@@ -6,7 +6,6 @@ void min_of(const int v[],int n ){
         printf("Error array");
         return;
     }
-    
     for (int i = 1; i < n; i++)
     {
         if (v[i] <= 0)
@@ -19,10 +18,8 @@ void min_of(const int v[],int n ){
             if (v[i] < min)
             {
                 min = v[i];
-            }
-            
-        }
-        
+            }    
+        }      
     }
     printf("the min number is %d",min);    
 }

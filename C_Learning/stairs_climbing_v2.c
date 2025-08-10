@@ -10,7 +10,7 @@ int main(){
     printf("He has %lld methods to climb.",f(steps));
 }
 long long f(int steps){
-    long long a =1;
+    long long a =1;/*使用int溢出成了负数......*/
     long long b =1;
     long long c =1;
     if (steps <= 2)
@@ -27,4 +27,4 @@ long long f(int steps){
     }
     return c; 
 }
-/*f代表函数，表示了楼梯数目与攀爬方式的映射关系*/
+/*f代表函数，表示了楼梯数目与攀爬方式的映射关系(正向斐波那契)*/
