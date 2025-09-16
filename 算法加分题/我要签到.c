@@ -29,7 +29,7 @@ int main(){
     int temp2 = 0;
     for (size_t i = 0; i < recorded-1; i++)
     {
-        if (*(recorder + i) != *(recorder + i +1)){}
-        else temp2++,i++,printf("%d",*(recorder + i));
+        if (*(recorder + i) == *(recorder + i +1)) temp2++,i++,printf("%d\n",*(recorder + i));
     }
+    free(checker,recorder);
 }
