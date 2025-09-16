@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-int CompareFunction(const void * a,const void * b){
-     return ( *(int*)a - *(int*)b );
-}
+int CompareFunction(const void * ,const void * );
 int main(){
     /*先接受签到人数和监控记录数*/
     int checked,recorded;
@@ -32,4 +30,7 @@ int main(){
         if (*(recorder + i) == *(recorder + i +1)) temp2++,i++,printf("%d\n",*(recorder + i));
     }
     free(checker,recorder);
+}
+int CompareFunction(const void * a,const void * b) {
+    return ( *(int*)a - *(int*)b );
 }
