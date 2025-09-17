@@ -29,7 +29,7 @@ int main(){
     {
         if (*(recorder + i) == *(recorder + i +1)) temp2++,i++,printf("%d\n",*(recorder + i));
     }
-    free(checker,recorder);
+    free(checker),free(recorder);
 }
 int CompareFunction(const void * a,const void * b) {
     return ( *(int*)a - *(int*)b );
