@@ -57,5 +57,17 @@ int main(){
             strcpy(*(times_+times_qualified), *(runners+i));
             times_qualified++;
         }
-    }   
+    }
+    /*马上结束啦！就要输出了*/
+    char ** fullscore = malloc(sizeof(char *) * (odo_qualified + times_qualified));//满分人名
+    int fullcount = 0;//满分人数
+    for (size_t i = 0; i < number; i++)
+    {
+        *(fullscore +i) = (char *)malloc(sizeof(char) * 21);
+        strcpy(*(fullscore + fullcount),*(total_ + i));
+        fullcount++;
+    }
+    /*最后的逻辑真的不会写了。就是看从第几项开始，满分数组没有写入，遍历之前的，同时看看times_有没有没有被写进去的，然后附加，得到完整的满分
+    然后，再次遍历，得到满分人数，输出。*/    
 }
+/*用C语言写算法题真是灾难*/
