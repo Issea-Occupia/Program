@@ -4,4 +4,3 @@
 <h1 style="text-align: center; font-size: 2em; font-weight: bold;">
   它包含了 <span style="color: green;">C</span>  <span style="color: red;">C++</span> 和<span style="color: green;">Python</span> 
 </h1>
-
