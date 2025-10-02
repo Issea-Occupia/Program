@@ -1,3 +1,2 @@
 *.exe
-launch.json
-tasks.json
+*.json
