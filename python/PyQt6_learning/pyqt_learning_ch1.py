@@ -8,6 +8,7 @@ class MainWindows(QMainWindow):
         self.setWindowTitle("my first window")
         button = QPushButton("push me!!")
         button.setCheckable(True)
+        button.setChecked(True)
         button.clicked.connect(self.isclicked)
         button.clicked.connect(self.istoggled)
         minisize = QSize(300,400)
