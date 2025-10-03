@@ -3,24 +3,16 @@ from PyQt6.QtCore import *
 class MainWindows(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.ischecked = True
+        self.thebuttonischecked = True
         self.setWindowTitle("my first window")
-        button = QPushButton("push me!!")
-        button.setCheckable(True)
-        button.setChecked(self.ischecked)
-        button.clicked.connect(self.isclicked)
-        button.clicked.connect(self.istoggled)
-        minisize = QSize(300,400)
-        maxsize = QSize(600,800)
-
-        self.setCentralWidget(button)
-        self.setMinimumSize(minisize)
-        self.setMaximumSize(maxsize)
+        self.button = QPushButton("push me!!")
+        self.button.clicked.connect(self.isclicked)
+        self.setCentralWidget(self.button)
     def isclicked(self):
-        print("the button is clicked!")
-    def istoggled(self,checked):
-        self.ischecked = checked
-        print("the button is toggled!",checked)
+        self.button.setText("you already clicked me!")
+        self.button.setEnabled(False)
+        self.setWindowTitle("my oneshot app")
+
 app = QApplication([])
 
 window = MainWindows()
