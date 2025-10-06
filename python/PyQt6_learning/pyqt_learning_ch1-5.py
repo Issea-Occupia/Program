@@ -9,7 +9,7 @@ class MainWindow(QMainWindow):
         font = self.label.font()
         font.setPointSize(35)
         self.label.setFont(font)
-        self.label.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignVCenter)
+        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.setCentralWidget(self.label)
 
