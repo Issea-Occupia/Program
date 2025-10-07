@@ -20,6 +20,8 @@ class MainWindow(QMainWindow):
         self.slider = QSlider()
         self.spinbox = QSpinBox()
         self.timeedit = QTimeEdit()
+        self.checkbox.setTristate(True)
+        self.checkbox.setCheckState(Qt.CheckState.PartiallyChecked)
         layout.addWidget(self.checkbox)
         layout.addWidget(self.combobox)
         layout.addWidget(self.dateedit)
