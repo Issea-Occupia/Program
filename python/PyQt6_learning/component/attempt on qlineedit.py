@@ -1,5 +1,4 @@
-from PyQt6.QtWidgets import *
-from PyQt6.QtCore import * 
+from PyQt6.QtWidgets import QLineEdit,QMainWindow,QApplication
 
 class MainWindow(QMainWindow):
     def __init__(self):
