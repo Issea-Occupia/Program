@@ -1,5 +1,5 @@
-from typing import List, Tuple
-from PyQt6.QtCore import Qt, QModelIndex
+from typing import List
+from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QStandardItemModel, QStandardItem
 from PyQt6.QtWidgets import QComboBox
 
@@ -17,16 +17,13 @@ class MultiSelectComboBox(QComboBox):
         self.lineEdit().setPlaceholderText("选择一个或多个（点击展开勾选）")
         # 禁止用户在下拉框里输入文本
         self.setInsertPolicy(QComboBox.InsertPolicy.NoInsert)
-        # concrete model for better tooling/type support
-        self._model: QStandardItemModel = QStandardItemModel(self)
-        self.setModel(self._model)
 
-    def add_check_items(self, items: List[Tuple[str, str]]):
+    def add_check_items(self, items: List[tuple[str, str]]):
         # items: [(key, label)]
         for key, label in items:
             self.addItem(label, userData=key)
-            idx = self._model.index(self.count()-1, 0)
-            item = self._model.itemFromIndex(idx)
+            idx = self.model().index(self.count()-1, 0)
+            item = self.model().itemFromIndex(idx)
             item.setFlags(item.flags() | Qt.ItemFlag.ItemIsUserCheckable)
             item.setData(Qt.CheckState.Unchecked, Qt.ItemDataRole.CheckStateRole)
         self._refresh_text()
@@ -35,7 +32,7 @@ class MultiSelectComboBox(QComboBox):
         keys = self.checked_keys()
         labels = []
         for i in range(self.count()):
-            if self._model.item(i).data(Qt.ItemDataRole.CheckStateRole) == Qt.CheckState.Checked:
+            if self.model().item(i).data(Qt.ItemDataRole.CheckStateRole) == Qt.CheckState.Checked:
                 labels.append(self.itemText(i))
         self.lineEdit().setText(
             ", ".join(labels) if labels else ""
@@ -44,7 +41,7 @@ class MultiSelectComboBox(QComboBox):
     def checked_keys(self) -> List[str]:
         res = []
         for i in range(self.count()):
-            item = self._model.item(i)
+            item = self.model().item(i)
             if item.data(Qt.ItemDataRole.CheckStateRole) == Qt.CheckState.Checked:
                 res.append(self.itemData(i))  # userData
         return res
@@ -55,8 +52,8 @@ class MultiSelectComboBox(QComboBox):
         view = self.view()
         view.pressed.connect(self._handle_item_pressed)
 
-    def _handle_item_pressed(self, index: QModelIndex):
-        item = self._model.itemFromIndex(index)
+    def _handle_item_pressed(self, index):
+        item = self.model().itemFromIndex(index)
         if item is None:
             return
         state = item.data(Qt.ItemDataRole.CheckStateRole)
@@ -65,3 +62,4 @@ class MultiSelectComboBox(QComboBox):
             Qt.ItemDataRole.CheckStateRole,
         )
         self._refresh_text()
+
