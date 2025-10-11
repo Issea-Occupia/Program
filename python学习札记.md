@@ -486,5 +486,45 @@ import_preloaded()
 
 
 
-## 6
+## 6  **isinstance**(*object*, *classinfo*, */*)函数
 
+函数原型中的object是要检查的对象（已经实例化的），classinfo则是类或类的元组（用于检查的类型）。
+
+简单来说，这个函数会返回布尔值，当接受的对象是接受的类或继承该类的类的实例化时返回`True`,反之则为`False`。如下：
+
+```python
+>>> a = {'a':'1'}
+>>> isinstance(a,dict)
+True
+>>> isinstance(a,list)
+False
+>>> isinstance(a,(list,str,dict))
+True
+>>> isinstance(a,[list,str,dict])
+Traceback (most recent call last):
+  File "<python-input-8>", line 1, in <module>
+    isinstance(a,[list,str,dict])
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+TypeError: isinstance() arg 2 must be a type, a tuple of types, or a union
+```
+
+也应该注意区分该函数与`type()`区别。如下：
+
+```
+>>> class A:pass
+>>> class B(A):pass
+>>> a = A()
+>>> b = B()
+>>> isinstance(b,A)
+True
+>>> type(a)
+<class '__main__.A'>
+>>> type(b)
+<class '__main__.B'>
+>>> type(b) is A
+False
+```
+
+可以看出,`type()`属于强类型检测。
+
+<img src = "https://raw.githubusercontent.com/Issea-Occupia/Program/refs/heads/main/photos/%E4%BD%A9%E4%BD%A9.png" style="width:300px; border-radius:20px;">
