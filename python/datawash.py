@@ -40,7 +40,6 @@ for i in a:
     if i == '\t' or i == '\n':
         container.append(str_)
         str_ = '' 
-        continue
     else:
         str_ += i
 counter = 0
