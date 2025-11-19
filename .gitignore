@@ -1,8 +1,1 @@
 *.exe
-*.json
-__pycache__/
-*.pyc 
-python/others
-.vscode
-*.xml
-*.iml
