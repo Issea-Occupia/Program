@@ -115,6 +115,67 @@ depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
 .PHONY : depend
 
+#=============================================================================
+# Target rules for targets named classtest_stack
+
+# Build rule for target.
+classtest_stack: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 classtest_stack
+.PHONY : classtest_stack
+
+# fast build rule for target.
+classtest_stack/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\classtest_stack.dir\build.make CMakeFiles/classtest_stack.dir/build
+.PHONY : classtest_stack/fast
+
+src/main.obj: src/main.cpp.obj
+.PHONY : src/main.obj
+
+# target to build an object file
+src/main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\classtest_stack.dir\build.make CMakeFiles/classtest_stack.dir/src/main.cpp.obj
+.PHONY : src/main.cpp.obj
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\classtest_stack.dir\build.make CMakeFiles/classtest_stack.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\classtest_stack.dir\build.make CMakeFiles/classtest_stack.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
+src/stack.obj: src/stack.cpp.obj
+.PHONY : src/stack.obj
+
+# target to build an object file
+src/stack.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\classtest_stack.dir\build.make CMakeFiles/classtest_stack.dir/src/stack.cpp.obj
+.PHONY : src/stack.cpp.obj
+
+src/stack.i: src/stack.cpp.i
+.PHONY : src/stack.i
+
+# target to preprocess a source file
+src/stack.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\classtest_stack.dir\build.make CMakeFiles/classtest_stack.dir/src/stack.cpp.i
+.PHONY : src/stack.cpp.i
+
+src/stack.s: src/stack.cpp.s
+.PHONY : src/stack.s
+
+# target to generate assembly for a file
+src/stack.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\classtest_stack.dir\build.make CMakeFiles/classtest_stack.dir/src/stack.cpp.s
+.PHONY : src/stack.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -123,6 +184,13 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... classtest_stack
+	@echo ... src/main.obj
+	@echo ... src/main.i
+	@echo ... src/main.s
+	@echo ... src/stack.obj
+	@echo ... src/stack.i
+	@echo ... src/stack.s
 .PHONY : help
 
 

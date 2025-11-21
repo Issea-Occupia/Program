@@ -6,6 +6,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_executable(classtest_stack
-    ./src/main.cpp
-    ./src/Stack.cpp
+    src/main.cpp
+    src/stack.cpp
 )

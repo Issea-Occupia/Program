@@ -157,7 +157,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=Project
+CMAKE_PROJECT_NAME:STATIC=classtest_stack
 
 //Value Computed by CMake
 CMAKE_PROJECT_SPDX_LICENSE:STATIC=
@@ -253,6 +253,15 @@ Project_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 Project_SOURCE_DIR:STATIC=D:/Program/cpp_learning/classtest_stack
+
+//Value Computed by CMake
+classtest_stack_BINARY_DIR:STATIC=D:/Program/cpp_learning/classtest_stack
+
+//Value Computed by CMake
+classtest_stack_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+classtest_stack_SOURCE_DIR:STATIC=D:/Program/cpp_learning/classtest_stack
 
 
 ########################
