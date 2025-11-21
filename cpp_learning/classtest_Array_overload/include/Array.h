@@ -11,6 +11,7 @@ private:
 public:
     Array(size_t size);
     ~Array();
-    
+    size_t size();
+
 };
 #endif //ARRAY_H_
