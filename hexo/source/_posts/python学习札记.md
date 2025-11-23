@@ -1,15 +1,43 @@
 ---
-title: python学习札记
+title: 
 date: 2025-11-22 20:51:00
 tags: [Python, 学习笔记]
 categories: [编程]
 ---
+<!-- ① 加载翻转效果的 CSS 和 JS 文件 -->
+<link rel="stylesheet" href="/css/flip.css">
+<script src="/js/flip.js"></script>
 
-<div style="text-align : center;font-size : 40px;font-weight : 700">python学习札记(=ↀωↀ=)✧</div>
+<link rel="stylesheet" href="/css/cursor.css">
+<script type="module" src="/js/cursor.js"></script>
 
-<img src = "https://raw.githubusercontent.com/Issea-Occupia/Program/refs/heads/main/photos/2c077d928bca20e80a746ded59918443.jpg" style="width:300px; border-radius:20px;">
+<!-- ② 在你想翻转图片的地方写下面这个结构 -->
+
+
+
+<div style="text-align : center;font-size : 40px;font-weight : 700">
+python学习札记(=ↀωↀ=)✧
+</div>
+
+
+
+
+<div class="flip-card"><div class="flip-card-inner">
+
+<div class="flip-card-front">
+<img src="https://raw.githubusercontent.com/Issea-Occupia/Program/refs/heads/main/photos/2c077d928bca20e80a746ded59918443.jpg">
+</div>
+
+<div class="flip-card-back">测试成功翻转</div>
+
+</div></div>
+
+
+
 
 ## 1 sys.argv的应用。
+
+
 
 <div style = "font-size : 25px;font-weight : 700">以下官方文档的解释：</div>
 
