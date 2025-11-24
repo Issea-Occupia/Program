@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\classtest_stack.dir/objects.a
-C:\Windows\mingw64\bin\ar.exe qc CMakeFiles\classtest_stack.dir/objects.a @CMakeFiles\classtest_stack.dir\objects1.rsp
-C:\Windows\mingw64\bin\c++.exe -Wl,--whole-archive CMakeFiles\classtest_stack.dir/objects.a -Wl,--no-whole-archive -o classtest_stack.exe -Wl,--out-implib,libclasstest_stack.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\classtest_stack.dir\linkLibs.rsp
