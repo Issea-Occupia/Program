@@ -1,3 +1,46 @@
+# ---- Qt / CMake build directories ----
+build/
+build-*/
+*/build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+
+# ---- Qt Creator / VSCode temp ----
+*.user
+*.pro.user
+*.qbs.user
+*.qmlc
+*.jsc
+
+# ---- Qt moc/uic/rcc generated ----
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+
+# ---- VSCode ----
+.vscode/ipch
+.vscode/.cmake
+.vscode/targets.json
+
+# ---- Binaries ----
 *.exe
+*.dll
+*.so
+*.dylib
+
+# ---- Obj / Lib ----
 *.o
-/build/
+*.obj
+*.a
+*.lib
+*.pdb
+
+# ---- Logs ----
+*.log
+
+# ---- OS-specific ----
+.DS_Store
+Thumbs.db
