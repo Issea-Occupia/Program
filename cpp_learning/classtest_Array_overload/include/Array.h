@@ -11,12 +11,13 @@ private:
 
 public:
     Array(size_t n)
-        : data(new T[n]), n(n)
+        : data(new T[n]), n(n), idx(0)
     {}
 
     Array(const Array<T>& other){
         int len = other.length();
         this->n = len;
+        this->idx = other.idx;
         this->data = new T[len];
         for (size_t i = 0; i < len; i++)
         {
@@ -25,7 +26,7 @@ public:
     }
 
     void push_back(const T& _data){
-        if(idx + 1 == n){
+        if(idx == n){
             T* temp = new T[2*n];
             for (size_t i = 0; i < n; i++)
             {
@@ -37,7 +38,7 @@ public:
             data = temp;
             idx++;
         }else {
-            this->data[++idx] = _data;
+            this->data[idx++] = _data;
         }
     }
 
