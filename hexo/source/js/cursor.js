@@ -1,8 +1,6 @@
 /**
- * cursor.js — 修复粒子不在鼠标尖端的最终版
- * ✅ 随机亮色粒子（排除黑色）
- * ✅ 重力 + DOM 碰撞
- * ✅ Stellar / PJAX 全局生效
+ * cursor.js — 按下即可持续喷射（无需鼠标移动）
+ * ✅ 全局生效 + Stellar PJAX 支持
  */
 
 let cursorInitialized = false;
@@ -32,27 +30,20 @@ function initCursor() {
   resize();
   window.addEventListener("resize", resize);
 
-  // 粒子系统
+  // 状态
   const particles = [];
-  const domBodies = [];
-  const G = 0.12;
-  const FRICTION = 0.992;
+  let pressed = false;
+  let mouseX = 0, mouseY = 0;
 
+  const G = 0.045;
+  const FRICTION = 0.993;
+
+  // ✅ 随机亮色（避免黑灰）
   function randomBrightColor() {
-    let h = Math.random() * 360;
-    let s = 65 + Math.random() * 35;
-    let l = 55 + Math.random() * 35;
+    const h = Math.random() * 360;
+    const s = 60 + Math.random() * 35;
+    const l = 60 + Math.random() * 30;
     return `hsl(${h} ${s}% ${l}%)`;
-  }
-
-  function collectDomBodies() {
-    domBodies.length = 0;
-    document
-      .querySelectorAll("img, pre, code, figure, article, .card, h1,h2,h3,h4,h5,h6")
-      .forEach(el => {
-        const r = el.getBoundingClientRect();
-        domBodies.push({ x: r.left, y: r.top, w: r.width, h: r.height });
-      });
   }
 
   function spawn(x, y) {
@@ -61,58 +52,57 @@ function initCursor() {
       y,
       vx: (Math.random() - 0.5) * 3,
       vy: (Math.random() - 0.5) * 3,
-      size: 2.5 + Math.random() * 3.5,
-      life: 1.3,
+      size: 2.8 + Math.random() * 2.5,
+      life: 1.25,
       color: randomBrightColor()
     });
   }
 
+  // ✅ 只负责更新坐标
   document.addEventListener("pointermove", e => {
-    spawn(e.clientX, e.clientY);
+    mouseX = e.clientX;
+    mouseY = e.clientY;
   });
 
+  // ✅ 按下开始喷射
+  document.addEventListener("pointerdown", e => {
+    pressed = true;
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    spawn(mouseX, mouseY); // 当下立即喷一颗
+  });
+
+  // ✅ 松开停止喷射
+  document.addEventListener("pointerup", () => pressed = false);
+  document.addEventListener("pointerleave", () => pressed = false);
+
+  // ✅ 动画循环
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    collectDomBodies();
+    // ✅ 连续喷射逻辑：只看 pressed
+    if (pressed) spawn(mouseX, mouseY);
 
     for (let i = particles.length - 1; i >= 0; i--) {
       const p = particles[i];
 
-      // gravity
       p.vy += G;
-
-      // motion
       p.x += p.vx;
       p.y += p.vy;
 
-      // friction
       p.vx *= FRICTION;
       p.vy *= FRICTION;
 
-      // Screen boundary bounce
+      // 屏幕反弹
       if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
       if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
 
-      // DOM collision
-      for (const b of domBodies) {
-        if (
-          p.x > b.x && p.x < b.x + b.w &&
-          p.y > b.y && p.y < b.y + b.h
-        ) {
-          p.vx *= -1;
-          p.vy *= -1.15;
-        }
-      }
-
-      // life decay
-      p.life -= 0.013;
+      p.life -= 0.011;
       if (p.life <= 0) {
         particles.splice(i, 1);
         continue;
       }
 
-      // draw
       ctx.globalAlpha = p.life;
       ctx.fillStyle = p.color;
       ctx.beginPath();

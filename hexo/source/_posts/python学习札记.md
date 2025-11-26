@@ -21,16 +21,23 @@ python学习札记(=ↀωↀ=)✧
 
 
 
+{% raw %}
+<div class="flip-wrap">
+  <div class="flip-card">
+    <div class="flip-card-inner">
 
-<div class="flip-card"><div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img src="/images/pepe_with_eyes_opened.jpg" alt="image">
+      </div>
 
-<div class="flip-card-front">
-<img src="https://raw.githubusercontent.com/Issea-Occupia/Program/refs/heads/main/photos/2c077d928bca20e80a746ded59918443.jpg">
+      <div class="flip-card-back">
+        <img src="/images/pepe_cried.gif" alt="image">
+      </div>
+
+    </div>
+  </div>
 </div>
-
-<div class="flip-card-back">测试成功翻转</div>
-
-</div></div>
+{% endraw %}
 
 
 
@@ -105,7 +112,23 @@ Your solutions are  -2.048870052492215 and -3.860220856598694
 
 不知道你有没有看出我们的区别。第一次运行时，我们只是执行`python filename.py` 这个指令，所以 `sys.argv` 里只有脚本名，没有额外参数，访问 `args[1]` 就报错了。而第二次，我们执行了`python filename.py 11 65 87` 这个指令。关键就在后面的`11 65 87` 。这些数字就是我们传递给脚本的命令行参数，它们依次存储在 `sys.argv` 中，从 `argv[1]` 开始。当环境读取到命令，他就会将这些参数传递到`sys.argv` ,我们通过读取这个列表最终实现了整个程序的运行。
 
-<img src = "https://raw.githubusercontent.com/Issea-Occupia/Program/refs/heads/main/photos/feda35443df77a09dfd874216740aa00.jpg" style="width:350px; border-radius:20px;">
+{% raw %}
+<div class="flip-wrap">
+  <div class="flip-card">
+    <div class="flip-card-inner">
+
+      <div class="flip-card-front">
+        <img src="/images/mon3tr_dringking_drink.jpg" alt="image">
+      </div>
+
+      <div class="flip-card-back">
+        <img src="/images/mon3tr_dringking_drink.jpg" alt="image">
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endraw %}
 
 ## 2  self.变量
 
@@ -500,7 +523,7 @@ import_preloaded()
 
 对于程序底层把必须的模块，python会写入，对于内建的，python也会导入。而那些不是很必要的普通模块，python则会按需导入。
 
-## （3）结语
+### （3）结语
 
 到这里，我们其实已经串起了 Python 模块系统的整个逻辑链条：
 从 `__name__ == "__main__"` 的执行入口，到 `sys.modules` 的注册缓存，再到解释器如何在启动阶段预写入内建模块。
