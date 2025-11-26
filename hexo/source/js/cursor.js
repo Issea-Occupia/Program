@@ -1,9 +1,8 @@
 /**
- * cursor.js — 进阶物理粒子特效（Stellar / PJAX 全局可用）
- * ✅ 站点全局生效
- * ✅ 随机亮色粒子（排除黑暗色）
- * ✅ 含重力、反弹、摩擦、DOM 碰撞体
- * ✅ 性能友好（自动清理）
+ * cursor.js — 修复粒子不在鼠标尖端的最终版
+ * ✅ 随机亮色粒子（排除黑色）
+ * ✅ 重力 + DOM 碰撞
+ * ✅ Stellar / PJAX 全局生效
  */
 
 let cursorInitialized = false;
@@ -12,16 +11,14 @@ function initCursor() {
   if (cursorInitialized) return;
   cursorInitialized = true;
 
-  //---------------------------------------
   // Canvas
-  //---------------------------------------
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
 
   Object.assign(canvas.style, {
     position: "fixed",
-    left: 0,
-    top: 0,
+    left: "0",
+    top: "0",
     pointerEvents: "none",
     zIndex: 9999
   });
@@ -29,68 +26,51 @@ function initCursor() {
   document.body.appendChild(canvas);
 
   function resize() {
-    canvas.width = window.innerWidth * devicePixelRatio;
-    canvas.height = window.innerHeight * devicePixelRatio;
-    ctx.scale(devicePixelRatio, devicePixelRatio);
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
   }
   resize();
   window.addEventListener("resize", resize);
 
-  //---------------------------------------
-  // 粒子状态
-  //---------------------------------------
+  // 粒子系统
   const particles = [];
   const domBodies = [];
-  const G = 0.1;          // ✅ 重力加速度
-  const FRICTION = 0.995; // ✅ 空气阻力衰减
+  const G = 0.12;
+  const FRICTION = 0.992;
 
-  //---------------------------------------
-  // 随机亮色（排除黑色/灰色）
-  //---------------------------------------
   function randomBrightColor() {
-    let h = Math.random() * 360;       // 全色相
-    let s = 60 + Math.random() * 40;   // 避免灰
-    let l = 55 + Math.random() * 35;   // 保证亮度
-    return `hsl(${h}, ${s}%, ${l}%)`;
+    let h = Math.random() * 360;
+    let s = 65 + Math.random() * 35;
+    let l = 55 + Math.random() * 35;
+    return `hsl(${h} ${s}% ${l}%)`;
   }
 
-  //---------------------------------------
-  // DOM 碰撞体收集
-  //---------------------------------------
   function collectDomBodies() {
     domBodies.length = 0;
-
-    document.querySelectorAll("img, .card, pre, figure, article, h1,h2,h3,h4,h5,h6")
+    document
+      .querySelectorAll("img, pre, code, figure, article, .card, h1,h2,h3,h4,h5,h6")
       .forEach(el => {
         const r = el.getBoundingClientRect();
         domBodies.push({ x: r.left, y: r.top, w: r.width, h: r.height });
       });
   }
 
-  //---------------------------------------
-  // 粒子生成
-  //---------------------------------------
   function spawn(x, y) {
     particles.push({
-      x, y,
-      vx: (Math.random() - 0.5) * 4,
-      vy: (Math.random() - 0.5) * 4,
-      size: 3 + Math.random() * 3,
-      life: 1.2,
+      x,
+      y,
+      vx: (Math.random() - 0.5) * 3,
+      vy: (Math.random() - 0.5) * 3,
+      size: 2.5 + Math.random() * 3.5,
+      life: 1.3,
       color: randomBrightColor()
     });
   }
 
-  //---------------------------------------
-  // 鼠标
-  //---------------------------------------
   document.addEventListener("pointermove", e => {
     spawn(e.clientX, e.clientY);
   });
 
-  //---------------------------------------
-  // 动画循环
-  //---------------------------------------
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -99,40 +79,40 @@ function initCursor() {
     for (let i = particles.length - 1; i >= 0; i--) {
       const p = particles[i];
 
-      // ✅ 重力
+      // gravity
       p.vy += G;
 
-      // ✅ 移动
+      // motion
       p.x += p.vx;
       p.y += p.vy;
 
-      // ✅ 阻尼
+      // friction
       p.vx *= FRICTION;
       p.vy *= FRICTION;
 
-      // ✅ 边界反弹
-      if (p.x < 0 || p.x > window.innerWidth)  p.vx *= -1;
-      if (p.y < 0 || p.y > window.innerHeight) p.vy *= -1;
+      // Screen boundary bounce
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
 
-      // ✅ DOM 碰撞
+      // DOM collision
       for (const b of domBodies) {
         if (
           p.x > b.x && p.x < b.x + b.w &&
           p.y > b.y && p.y < b.y + b.h
         ) {
           p.vx *= -1;
-          p.vy *= -1.1;
+          p.vy *= -1.15;
         }
       }
 
-      // ✅ 生命周期衰减
-      p.life -= 0.01;
+      // life decay
+      p.life -= 0.013;
       if (p.life <= 0) {
         particles.splice(i, 1);
         continue;
       }
 
-      // ✅ 绘制
+      // draw
       ctx.globalAlpha = p.life;
       ctx.fillStyle = p.color;
       ctx.beginPath();
@@ -146,6 +126,5 @@ function initCursor() {
   animate();
 }
 
-// ✅ PJAX & 初次加载都执行
 document.addEventListener("DOMContentLoaded", initCursor);
 document.addEventListener("pjax:complete", initCursor);
