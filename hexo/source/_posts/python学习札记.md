@@ -27,11 +27,11 @@ python学习札记(=ↀωↀ=)✧
     <div class="flip-card-inner">
 
       <div class="flip-card-front">
-        <img src="/images/pepe_with_eyes_opened.jpg" alt="image">
+        <img src="/images/eyes_opened_pepe.jpg" alt="image">
       </div>
 
       <div class="flip-card-back">
-        <img src="/images/pepe_cried.gif" alt="image">
+        <img src="/images/crying_pepe.gif" alt="image">
       </div>
 
     </div>
@@ -118,11 +118,11 @@ Your solutions are  -2.048870052492215 and -3.860220856598694
     <div class="flip-card-inner">
 
       <div class="flip-card-front">
-        <img src="/images/mon3tr_dringking_drink.jpg" alt="image">
+        <img src="/images/holding_tea_lappland.gif" alt="image">
       </div>
 
       <div class="flip-card-back">
-        <img src="/images/mon3tr_dringking_drink.jpg" alt="image">
+        <img src="/images/holding_tea_lappland.gif" alt="image">
       </div>
 
     </div>
@@ -187,76 +187,9 @@ ceobe.describe()
 
 <div style = "font-size : 25px;text-align : center;font-weight : 700">你要不自己看吧。。。过了。真的，千言万语不如你自己运行一下。溜了~~~</div>
 
-<img src = "https://raw.githubusercontent.com/Issea-Occupia/Program/refs/heads/main/photos/d5a7572fb4d453c272333ed89c9d40da.jpg" style="width:300px; border-radius:20px;">
+<img src = "/images/dull_mon3tr.gif" style="width:300px; border-radius:20px;">
 
-## 3 Python 与栈（待完工）
-
->我编写了一个无穷递归的python小程序，想看到程序逐渐卡死。
->
->```python
->from PyQt6.QtWidgets import *
->import sys
->from random import randint
->class MainWindow(QMainWindow):
->def __init__(self):
->   super().__init__()
->   self.windowTitleChanged.connect(self.titlechanged)
->   self.setWindowTitle("Start!!!")
->
->def titlechanged(self,title):
->   self.setWindowTitle(str(randint(1,1000000)))
->   print(f"changed to {title}")
->
->app = QApplication(sys.argv)
->w = MainWindow()
->w.show()
->app.exec()
->```
->
->但是事与愿违，程序反手抛了一个错误，直接歇菜，狠狠打了我的脸：
->
->```
->Traceback (most recent call last):
->File "d:\Program\python\PyQt6_learning\pyqt_learning_ch1-crash-version.py", line 11, in titlechanged
->self.setWindowTitle(str(randint(1,1000000)))
->File "C:\Users\Issea Occupia\AppData\Local\Programs\Python\Python313\Lib\random.py", line 340, in randint
->return self.randrange(a, b+1)
->File "C:\Users\Issea Occupia\AppData\Local\Programs\Python\Python313\Lib\random.py", line 322, in randrange
->return istart + self._randbelow(width)
->RecursionError: maximum recursion depth exceeded
->```
->
->python是怎么区分无限栈和有限超大栈？比如我曾经用递归写法用c实现了斐波那契数列求解，理论上，我给定的数字是不可能在一小时内算完，但是系统也没有崩溃，那为什么python歇菜了？python不是解释性语言吗？解释一行运行一行？我写过一个使用while true运行的循环程序，这个程序连着跑两个小时不崩溃，为什么？这个（一大堆）问题可不好回答，让我们来一起看看。
-
-<p style = "font-size : 25px ; font-weight : 700">(1).解释型语言</p>
-
-首先必须澄清，目前许多关于这个知识点的资料存在严重的错误，如下：
-
->解释型语言：是一种使用解释器一行一行地将源代码翻译成二进制机器码，进行解释执行的语言。
-
-乍一听，这个逻辑简直对得不能再对了。解释嘛，一行一行地，不和咱人脑编译一样的嘛？但如果我们从上面的解释出发，似乎有一些问题：
-
->为什么我的python代码会出现递归问题？一行一行的耶？！
-
-好了好了，我们先解决第一个问题，什么是解释型语言。
-
-<p style = "font-size : 25px ; font-weight : 700">(2).栈与递归</p>
-
-
-
-<p style = "font-size : 25px ; font-weight : 700">(3).栈深度，堆，内存与调用次数</p>
-
-
-
-<p style = "font-size : 25px ; font-weight : 700">(4).两种异常</p>
-
-
-
-<p style = "text-align : center; font-size : 25px ; font-weight : 700">嘻嘻~~</p>
-
-<img src = "https://raw.githubusercontent.com/Issea-Occupia/Program/refs/heads/main/photos/GPwCPB9akAEQsSr.jpg" style="width:500px; border-radius:20px;">
-
-## 4 QLable()的一点小问题
+## 3 QLable()的一点小问题
 
 问题起源于我的一次尝试。
 
@@ -278,7 +211,7 @@ ceobe.describe()
 
 我尝试创建一个包含输入框的窗口，然而结果不是那么喜人。。。
 
-<img src = "https://raw.githubusercontent.com/Issea-Occupia/Program/refs/heads/main/photos/ecd69e50953cb3913f85c5388ada3001.png" style = "height : 300px ; border-radius:20px;">
+<img src = "/images/getline_as_component.png" style = "height : 300px ; border-radius:20px;">
 
 输入框呢！！我的输入框呢！！
 
@@ -304,7 +237,7 @@ ceobe.describe()
 >app.exec()
 >```
 
-<img src = "https://raw.githubusercontent.com/Issea-Occupia/Program/refs/heads/main/photos/99f133a43bbacfd209cd2bf4c479baa8.png" style = "height : 300px ; border-radius:20px;">
+<img src = "/images/getline_in_container.png" style = "height : 300px ; border-radius:20px;">
 
 这下好了。可为什么呢？
 
@@ -322,9 +255,9 @@ ceobe.describe()
 
 
 
-<img src = "https://raw.githubusercontent.com/Issea-Occupia/Program/refs/heads/main/photos/4030e381d75bb919a81cad799cc7e7f1.gif" style="width:450px; border-radius:20px;">
+<img src = "/images/asleep_ceobe.jpg" style="width:450px; border-radius:20px;">
 
-## 5  python中的`__name__`与模块机制
+## 4  python中的`__name__`与模块机制
 
 >想必各位一定对下面这行代码非常熟悉又陌生：
 >
@@ -540,11 +473,11 @@ import_preloaded()
 
 
 
-<img src = "https://raw.githubusercontent.com/Issea-Occupia/Program/refs/heads/main/photos/bc06c414c69dd5bb46210a43be493e2e.jpg" style="width:300px; border-radius:20px;">
+<img src = "/images/holding_tea_lappland.gif" style="width:300px; border-radius:20px;">
 
 
 
-## 6  **isinstance**(*object*, *classinfo*, */*)函数
+## 5  **isinstance**(*object*, *classinfo*, */*)函数
 
 函数原型中的object是要检查的对象（已经实例化的），classinfo则是类或类的元组（用于检查的类型）。
 
@@ -585,4 +518,4 @@ False
 
 可以看出,`type()`属于强类型检测。
 
-<img src = "https://raw.githubusercontent.com/Issea-Occupia/Program/refs/heads/main/photos/%E4%BD%A9%E4%BD%A9.png" style="width:300px; border-radius:20px;">
+<img src = "/images/thumbs_up_lappland.gif" style="width:300px; border-radius:20px;">
