@@ -101,4 +101,14 @@ theme: stellar
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/Issea-Occupia/Issea-Occupia.github.io.git
+  branch: main
+
+inject:
+  head:
+    - <link rel="stylesheet" href="/css/flip.css">
+    - <link rel="stylesheet" href="/css/cursor.css">
+  bottom:
+    - <script src="/js/flip.js"></script>
+    - <script type="module" src="/js/cursor.js"></script>
